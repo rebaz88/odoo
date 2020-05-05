@@ -10,7 +10,7 @@
         </t>
     </t>
 
-    <t t-name="DocumentViewer.Content">
+    <t>
         <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
     </t>
     <!--
