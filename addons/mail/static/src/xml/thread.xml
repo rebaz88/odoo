@@ -9,6 +9,10 @@
             <a role="menuitem" href="#" data-action="getMailMessages" class="dropdown-item">Manage Messages</a>
         </t>
     </t>
+
+    <t t-name="DocumentViewer.Content">
+        <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
+    </t>
     <!--
         @param {mail.model.AbstractThread} thread
         @param {Object} options
