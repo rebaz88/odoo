@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
+<div style="display:none;">
 
     <!--
         extends the debug mode menu to allow access to the attachment list view of the current record.
@@ -17,7 +18,7 @@
         @param {boolean} [options.displayNoMatchFound]
         @param {Array} [options.domain=[]] the domain to restrict messages on the thread.
     -->
-    <t t-name="mail.widget.Thread" t-if="1 == 2">
+    <t t-name="mail.widget.Thread">
         <t t-if="thread.hasMessages({ 'domain': options.domain || [] })">
             <t t-call="mail.widget.Thread.Content"/>
         </t>
@@ -131,7 +132,7 @@
     <div>
         <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
     </div>
-    <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content" t-if="1 == 2">
+    <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content">
         <t t-if="thread.getID() === 'mailbox_inbox'">
             <div class="o_thread_title">Congratulations, your inbox is empty</div>
             <div>New messages appear here.</div>
@@ -637,5 +638,5 @@
             <span class="o_mail_thread_typing_icon_dot"/>
         </span>
     </t>
-
+</div>
 </templates>
