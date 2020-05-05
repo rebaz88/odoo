@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
+<templates xml:space="preserve" t-if="1 == 2">
 
     <!--
         extends the debug mode menu to allow access to the attachment list view of the current record.
