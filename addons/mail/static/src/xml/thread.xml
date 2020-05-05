@@ -10,9 +10,9 @@
         </t>
     </t>
 
-    <t>
+    <div>
         <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
-    </t>
+    </div>
     <!--
         @param {mail.model.AbstractThread} thread
         @param {Object} options
