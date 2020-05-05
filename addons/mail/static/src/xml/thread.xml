@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-<div style="display:none;">
 
     <!--
         extends the debug mode menu to allow access to the attachment list view of the current record.
@@ -638,5 +637,4 @@
             <span class="o_mail_thread_typing_icon_dot"/>
         </span>
     </t>
-</div>
 </templates>
