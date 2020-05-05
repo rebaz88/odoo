@@ -17,11 +17,29 @@
         @param {boolean} [options.displayNoMatchFound]
         @param {Array} [options.domain=[]] the domain to restrict messages on the thread.
     -->
-    
+    <t t-name="mail.widget.Thread" t-if="1 == 2">
+        <t t-if="thread.hasMessages({ 'domain': options.domain || [] })">
+            <t t-call="mail.widget.Thread.Content"/>
+        </t>
+        <t t-elif="options.displayEmptyThread">
+            <t t-call="mail.widget.Thread.Empty" />
+        </t>
+        <div t-elif="options.displayNoMatchFound" class="o_mail_no_content">
+            <div class="o_thread_title">No matches found</div>
+            <div>No message matches your search. Try to change your search filters.</div>
+        </div>
+    </t>
+
+    <!-- Rendering of thread when messaging not yet ready -->
+    <div t-name="mail.widget.ThreadLoading" class="o_mail_thread_loading">
+        <i class="o_mail_thread_loading_icon fa fa-spinner fa-spin"/>
+        <span>Please wait...</span>
+    </div>
+
     <!--
         @param {mail.DocumentViewer} widget
     -->
-    <t t-name="DocumentViewer.Content">
+    <t t-name="DocumentViewer.Content" t-if="1 == 2">
         <div class="o_viewer_content">
             <t t-set="model" t-value="widget.modelName"/>
             <div class="o_viewer-header">
@@ -68,7 +86,7 @@
     <!--
         @param {mail.DocumentViewer} widget
     -->
-    <t t-name="DocumentViewer">
+    <t t-name="DocumentViewer" t-if="1 == 2">
         <div class="modal o_modal_fullscreen" tabindex="-1" data-keyboard="false" role="dialog">
             <t class="o_document_viewer_content_call" t-call="DocumentViewer.Content"/>
 
@@ -86,7 +104,7 @@
     <!--
         @param {string} src
     -->
-    <t t-name="PrintImage">
+    <t t-name="PrintImage" t-if="1 == 2">
         <html>
             <head>
                 <script>
@@ -150,7 +168,7 @@
         ORDER:           ASC                     DESC
 
     -->
-    <t t-name="mail.widget.Thread.Content">
+    <t t-name="mail.widget.Thread.Content" t-if="1 == 2">
         <t t-set="messages" t-value="thread.getMessages({ 'domain': options.domain || [] })"/>
         <t t-if="options.displayOrder === ORDER.ASC" t-call="mail.widget.Thread.Content.ASC"/>
         <t t-else="" t-call="mail.widget.Thread.Content.DESC"/>
@@ -172,7 +190,7 @@
 
                       ASC Order
     -->
-    <t t-name="mail.widget.Thread.Content.ASC">
+    <t t-name="mail.widget.Thread.Content.ASC" t-if="1 == 2">
         <div class="o_mail_thread_content">
             <t t-if="options.displayLoadMore" t-call="mail.widget.Thread.LoadMore"/>
             <t t-call="mail.widget.Thread.Messages"/>
@@ -200,7 +218,7 @@
                       DESC Order
 
     -->
-    <t t-name="mail.widget.Thread.Content.DESC">
+    <t t-name="mail.widget.Thread.Content.DESC" t-if="1 == 2">
         <div class="o_mail_thread_content">
             <t t-if="options.messagesSeparatorPosition == 'top'" t-call="mail.MessagesSeparator"/>
             <t t-set="messages" t-value="messages.slice().reverse()"/>
@@ -213,7 +231,7 @@
         @param {mail.model.AbstractMessage[]} messages messages are ordered based
           on desired display order
     -->
-    <t t-name="mail.widget.Thread.Messages">
+    <t t-name="mail.widget.Thread.Messages" t-if="1 == 2">
         <t t-set="current_day" t-value="0"/>
         <t t-foreach="messages" t-as="message">
             <div t-if="current_day !== message.getDateDay()" class="o_thread_date_separator">
@@ -247,7 +265,7 @@
             message ID, the separator is placed just after this message.
         @param {integer} [options.selectedMessageID]
     -->
-    <t t-name="mail.widget.Thread.Message">
+    <t t-name="mail.widget.Thread.Message" t-if="1 == 2">
         <div t-if="!message.isEmpty()" t-att-class="'o_thread_message ' + (message.getID() === options.selectedMessageID ? 'o_thread_selected_message ' : ' ') + (message.isDiscussion() or message.isNotification() ? ' o_mail_discussion ' : ' o_mail_not_discussion ')" t-att-data-message-id="message.getID()">
             <div t-if="options.displayAvatars" class="o_thread_message_sidebar">
                 <t t-if="message.hasAuthor()">
@@ -372,7 +390,7 @@
         @param {mail.model.Thread} thread
         @param {mail.model.Message} message
     -->
-    <t t-name="mail.widget.Thread.Message.SeenIcon">
+    <t t-name="mail.widget.Thread.Message.SeenIcon" t-if="1 == 2">
         <t t-if="message.isMyselfAuthor() and message.getID() >= thread.getLastMessageIDSeenByEveryone()">
             <span t-attf-class="o_mail_thread_message_seen_icon #{thread.hasEveryoneSeen(message) ? 'o_all_seen' : ''}" t-att-data-message-id="message.getID()">
                 <t t-if="thread.hasSomeoneFetched(message)">
@@ -393,7 +411,7 @@
         @param {mail.model.Thread} thread
         @param {mail.model.Message} message
     -->
-    <t t-name="mail.widget.Thread.Message.SeenIconPopoverContent">
+    <t t-name="mail.widget.Thread.Message.SeenIconPopoverContent" t-if="1 == 2">
         <div class="o_mail_thread_message_seen_icon_content">
             <t t-if="thread.hasEveryoneSeen(message)">
                 <p>Seen by Everyone</p>
@@ -433,7 +451,7 @@
            A customer email data is a list with the following format:
            [partnerID, partnerName, emailStatus]
     -->
-    <t t-name="mail.widget.Thread.Message.MailTooltip">
+    <t t-name="mail.widget.Thread.Message.MailTooltip" t-if="1 == 2">
         <div t-foreach="data" t-as="customerEmailData">
             <span class="d-inline-block text-center o_thread_tooltip_icon">
                 <i t-if="customerEmailData[2] === 'sent'" class='fa fa-check' title="Sent" role="img" aria-label="Sent"/>
@@ -451,7 +469,7 @@
         @param {Object} options
         @param {boolean} [options.displayModerationCommands]
     -->
-    <t t-name="mail.MessageModeration">
+    <t t-name="mail.MessageModeration" t-if="1 == 2">
         <i t-if="message.isMyselfAuthor()" class="text-danger" title="Your message is pending moderation"><b>Pending moderation</b></i>
         <t t-elif="message.needsModerationByUser()">
             <t t-if="options.displayModerationCommands" t-call="mail.MessageModerationDecision"/>
@@ -462,7 +480,7 @@
     <!--
         @param {mail.model.Message} message
     -->
-    <t t-name="mail.MessageModerationDecision">
+    <t t-name="mail.MessageModerationDecision" t-if="1 == 2">
         <i class="o_thread_icon ml4 o_thread_message_moderation text-success"
            t-att-data-message-id="message.getID()" data-decision="accept" title="Accept"><b>Accept |</b></i>
         <i class="o_thread_icon ml4 o_thread_message_moderation text-danger"
@@ -475,7 +493,7 @@
            t-att-data-message-id="message.getID()" data-decision="ban" title="Ban this email address"><b>Ban</b></i>
     </t>
 
-    <t t-name="mail.MessagesSeparator">
+    <t t-name="mail.MessagesSeparator" t-if="1 == 2">
         <div class="o_thread_new_messages_separator">
             <span class="o_thread_separator_label">New messages</span>
         </div>
@@ -484,7 +502,7 @@
     <!--
         @param {mail.model.Message} message
     -->
-    <t t-name="mail.widget.Thread.MessageTracking">
+    <t t-name="mail.widget.Thread.MessageTracking" t-if="1 == 2">
         <ul class="o_mail_thread_message_tracking">
             <t t-foreach='message.getTrackingValues()' t-as='value'>
                 <li>
@@ -504,7 +522,7 @@
     <!--
         @param {Array} attachments
     -->
-    <t t-name="mail.composer.Attachments">
+    <t t-name="mail.composer.Attachments" t-if="1 == 2">
         <div t-if="attachments.length > 0" class="o_attachments o_attachments_list">
             <t t-foreach="attachments" t-as='attachment'>
                 <t t-call="mail.Attachment">
@@ -521,7 +539,7 @@
         @param {string} attachment.url
         @param {boolean} [isDeletable=false]
     -->
-    <t t-name="mail.AttachmentPreview">
+    <t t-name="mail.AttachmentPreview" t-if="1 == 2">
         <div class="o_attachment" t-att-title="attachment.name">
             <div class="o_attachment_wrap">
                 <div class="o_image_box">
@@ -550,7 +568,7 @@
           Some changes are required in that case, such as "delete" button is not visible (pretty unlink is used instead).
         @param {boolean} [isDeletable=false]
     -->
-    <t t-name="mail.Attachment">
+    <t t-name="mail.Attachment" t-if="1 == 2">
         <t t-set="type" t-value="attachment.mimetype and attachment.mimetype.split('/').shift()"/>
         <div t-attf-class="o_attachment #{ editable ? 'o_attachment_editable' : '' } #{attachment.upload ? 'o_attachment_uploading' : ''}" t-att-title="attachment.name">
             <div class="o_attachment_wrap">
@@ -595,7 +613,7 @@
         @param {Object} options
         @param {boolean} [options.loadMoreOnScroll]
     -->
-     <t t-name="mail.widget.Thread.LoadMore">
+     <t t-name="mail.widget.Thread.LoadMore" t-if="1 == 2">
         <div class="o_thread_show_more">
             <t t-if="options.loadMoreOnScroll">
                 <span><i class="fa fa-spinner fa-spin" role="img" aria-label="Please wait" title="Please wait"/> Loading older messages... </span>
@@ -609,7 +627,7 @@
     <!--
         @param {mail.model.Thread} thread with typing feature
     -->
-    <t t-name="mail.ThreadTypingIcon">
+    <t t-name="mail.ThreadTypingIcon" t-if="1 == 2">
         <span class="o_mail_thread_typing_icon" t-att-title="thread.getTypingMembersToText()">
             <span class="o_mail_thread_typing_icon_dot"/>
             <span class="o_mail_thread_typing_icon_dot"/>
