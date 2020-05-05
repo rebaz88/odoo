@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve" t-if="1 == 2">
+<templates xml:space="preserve">
 
     <!--
         extends the debug mode menu to allow access to the attachment list view of the current record.
@@ -17,7 +17,7 @@
         @param {boolean} [options.displayNoMatchFound]
         @param {Array} [options.domain=[]] the domain to restrict messages on the thread.
     -->
-    <t t-name="mail.widget.Thread">
+    <t t-name="mail.widget.Thread" t-if="1 == 2">
         <t t-if="thread.hasMessages({ 'domain': options.domain || [] })">
             <t t-call="mail.widget.Thread.Content"/>
         </t>
@@ -128,7 +128,7 @@
 
         @param {mail.model.Thread} thread
     -->
-    <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content">
+    <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content" t-if="1 == 2">
         <t t-if="thread.getID() === 'mailbox_inbox'">
             <div class="o_thread_title">Congratulations, your inbox is empty</div>
             <div>New messages appear here.</div>
