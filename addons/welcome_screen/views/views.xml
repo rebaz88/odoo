@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="welcome_screen.list">
+      <field name="name">welcome_screen list</field>
+      <field name="model">welcome_screen.welcome_screen</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="welcome_screen.action_window">
+      <field name="name">welcome_screen window</field>
+      <field name="res_model">welcome_screen.welcome_screen</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="welcome_screen.action_server">
+      <field name="name">welcome_screen server</field>
+      <field name="model_id" ref="model_welcome_screen_welcome_screen"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="welcome_screen" id="welcome_screen.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="welcome_screen.menu_1" parent="welcome_screen.menu_root"/>
+    <menuitem name="Menu 2" id="welcome_screen.menu_2" parent="welcome_screen.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="welcome_screen.menu_1_list" parent="welcome_screen.menu_1"
+              action="welcome_screen.action_window"/>
+    <menuitem name="Server to list" id="welcome_screen" parent="welcome_screen.menu_2"
+              action="welcome_screen.action_server"/>
+-->
+  </data>
+</odoo>
