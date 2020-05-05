@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Discuss',
+    'name': 'Home',
     'version': '1.0',
     'category': 'Discuss',
     'summary': 'Chat, mail gateway and private channels',
