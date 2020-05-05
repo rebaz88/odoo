@@ -128,7 +128,7 @@
 
         @param {mail.model.Thread} thread
     -->
-    <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content">
+    <div>
         <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
     </div>
     <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content" t-if="1 == 2">
