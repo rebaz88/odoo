@@ -128,6 +128,9 @@
 
         @param {mail.model.Thread} thread
     -->
+    <div>
+        <img src="https://unsplash.com/photos/fsmIXtNvmog" alt=""/>
+    </div>
     <div t-name="mail.widget.Thread.Empty" class="o_mail_no_content" t-if="1 == 2">
         <t t-if="thread.getID() === 'mailbox_inbox'">
             <div class="o_thread_title">Congratulations, your inbox is empty</div>
