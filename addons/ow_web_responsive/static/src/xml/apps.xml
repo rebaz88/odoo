@@ -19,25 +19,6 @@
             <attribute name="accesskey">a</attribute>
         </t>
 
-        <!-- Search bar -->
-        <t t-jquery="[t-as=app]" t-operation="before">
-            <div class="search-container form-row align-items-center mb-4 col-12">
-                <div class="search-input col-md-10 ml-auto mr-auto mb-2">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <i class="fa fa-search"/>
-                            </div>
-                        </div>
-                        <input type="search"
-                               autocomplete="off"
-                               placeholder="Search menus..."
-                               class="form-control"/>
-                    </div>
-                </div>
-                <div class="search-results col-md-10 ml-auto mr-auto"/>
-            </div>
-        </t>
     </t>
 
     <!-- Separate app icon template, for easier inheritance -->
