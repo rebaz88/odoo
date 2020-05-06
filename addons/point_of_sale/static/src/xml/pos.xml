@@ -10,7 +10,12 @@
             <div class="pos-topheader">
                 <div class="pos-branding">
                     <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png" alt="Logo"/>
-                    <t t-if='widget.pos.config.module_account'>
+                    <t t-jquery='.pos-logo' t-operation='append'>
+
+                        <t t-if="widget.pos.config">
+
+                        <span t-esc="widget.pos.config.name"/>
+
                     </t>
                 </div>
                 <div class="pos-rightheader">
