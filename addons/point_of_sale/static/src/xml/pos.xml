@@ -9,7 +9,10 @@
         <div class="pos">
             <div class="pos-topheader">
                 <div class="pos-branding">
-                    <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png" alt="Logo"/>
+                    <!-- <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png" alt="Logo"/> -->
+                    <t t-if='widget.pos.config.name'>
+                        <span t-esc="widget.pos.config.name"/>
+                    </t>
                 </div>
                 <div class="pos-rightheader">
                     <span class="placeholder-OrderSelectorWidget"></span>
