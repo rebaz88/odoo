@@ -49,6 +49,11 @@ odoo.define('pos_multi_variant.ProductPopup', function (require) {
             json.product_variants = this.product_variants || [];
             return json;
         },
+        export_for_printing: function () {
+            var json = _super_orderline.export_for_printing.apply(this, arguments);
+            json.product_variants = this.product_variants || [];
+            return json;
+        },
     });
 
     var ProductPopUp = PopupWidget.extend({
@@ -175,7 +180,7 @@ odoo.define('pos_multi_variant.ProductPopup', function (require) {
                 })
             });
             selected_orderline.price_manually_set = true;
-            selected_orderline.price += price
+            selected_orderline.price += price;
             selected_orderline.trigger('change', selected_orderline);
             this.gui.close_popup();
         }

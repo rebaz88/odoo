@@ -48,10 +48,9 @@
     <t t-extend="OrderReceipt">
         <t t-jquery="t[t-foreach*='receipt.orderlines'][t-as*='line']" t-operation="append">
             <div t-foreach="line.product_variants" t-as="variant">
-                <div>
-                    <div t-esc="variant.type" style="padding-left:15px;"></div>
-                    <div style="text-align: left;" t-esc="widget.format_currency(variant.extra_price)"></div>
-                </div>
+                <span style="padding-left:15px;font-size:14px;">
+                    -<span t-esc="variant.type"></span>
+                </span>
             </div>
         </t>
     </t>
