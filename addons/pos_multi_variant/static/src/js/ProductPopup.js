@@ -216,7 +216,36 @@ odoo.define('pos_multi_variant.ProductPopup', function (require) {
                     values: values,
                     self: self
                 });
-            } else {
+            } 
+            else if(product.is_pack)
+            {
+                var required_products = [];
+                var optional_products = [];
+                var combo_products = self.pos.pos_product_pack;
+                if(product)
+                {
+                    for (var i = 0; i < combo_products.length; i++) {
+                        if(combo_products[i]['bi_product_product'][0] == product['id'])
+                        {
+                            if(combo_products[i]['is_required'])
+                            {
+                                combo_products[i]['product_ids'].forEach(function (prod) {
+                                    var sub_product = self.pos.db.get_product_by_id(prod);
+                                    required_products.push(sub_product)
+                                });
+                            }
+                            else{
+                                combo_products[i]['product_ids'].forEach(function (prod) {
+                                    var sub_product = self.pos.db.get_product_by_id(prod);
+                                    optional_products.push(sub_product)
+                                });
+                            }
+                        }
+                    }
+                }
+                self.gui.show_popup('select_combo_product_widget', {'product': product,'required_products':required_products,'optional_products':optional_products , 'update_line' : false });
+            }
+            else {
                 this.pos.get_order().add_product(product);
             }
         },

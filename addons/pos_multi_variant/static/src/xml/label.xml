@@ -17,6 +17,12 @@
                     </t>
                 </t>
 
+                <t t-if="product.is_pack">
+                    <div class="product-bundle-pack" style="position: absolute; box-sizing: border-box; bottom: 0;top: 65px; line-height: 15px; width: 100%; height: 30px; overflow: hidden; text-overflow: ellipsis; background: #FD142A; color: #fff; padding: 3px; padding-top: 5px;">
+                    Combo Product
+                    </div>
+                </t>
+
             <t t-if="product.to_weight">
 
                     <span class="price-tag">
@@ -25,6 +31,12 @@
                 <t t-if="product.pos_variants">
                         <span class="variant">Multi-variant</span>
                     </t>
+                </t>
+
+                <t t-if="product.is_pack">
+                    <div class="product-bundle-pack" style="position: absolute; box-sizing: border-box; bottom: 0;top: 65px; line-height: 15px; width: 100%; height: 30px; overflow: hidden; text-overflow: ellipsis; background: #FD142A; color: #fff; padding: 3px; padding-top: 5px;">
+                    Combo Product
+                    </div>
                 </t>
             </div>
     </t>
@@ -44,6 +56,32 @@
 
             </div>
         </t>
+
+        <t t-jquery=".product-name" t-operation="append">
+   			<t t-if="line.product.is_pack">
+				<t t-if="line.get_combo_products()">
+					<span class="fa fa-edit edit-combo" style="font-size: 19px;color: green; margin-left: 10px;"/>
+				</t>
+			</t>
+   		</t>
+		<t t-jquery=".info" t-operation="after">
+			<t t-if="line.product.is_pack">
+				<t t-if="line.get_combo_products()">
+					<ul class="info-list">
+						<t t-foreach="line.get_combo_products()" t-as="products">
+							<t t-if="products != null">
+								<span class="product-name" style="font-size: 15px;font-weight: 500;">
+                                1X
+									<t t-esc='products.display_name' />
+									<t t-esc='products.qty' /> 
+								</span>
+							</t>
+							
+				  		</t>
+					</ul>
+				</t>
+			</t>
+		</t>
     </t>
     <t t-extend="OrderReceipt">
         <t t-jquery="t[t-foreach*='receipt.orderlines'][t-as*='line']" t-operation="append">
